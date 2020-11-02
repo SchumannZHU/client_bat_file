@@ -9,3 +9,6 @@ $WshNet.AddWindowsPrinterConnection($PrinterPath)
 ##デフォルトプリンタ設定
 (New-Object -ComObject WScript.Network).EnumPrinterConnections()
 $WshNet.SetDefaultPrinter('\\server\printer-default')
+
+##接続を外す場合
+##remove-Printer \\servername\printername
