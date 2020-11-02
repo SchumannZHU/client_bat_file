@@ -33,7 +33,7 @@ if Len( id )=7 then
 
   cl=Mid( id , 3,2 )
 
- '---- 18M1アカウント（メディア学科）は82に置き換える ------
+ '---- "M"アカウント（メディア学科）は82に置き換える ------
   if instr( 1 , cl , "M" )=1 then
     cl=82
   end if
@@ -46,11 +46,20 @@ if Len( id )=7 then
    Case 78:ss="Ce"
   End select  
  
- if ss<>"" then
-   s1="\\servername\"+ss
-   nw.MapNetworkDrive "x:",s1
-   nw.MapNetworkDrive "y:","\\servername\uni_drive"  
- end if 
-end if 
+   if ss<>"" then
+    s1="\\servername\"+ss
+    nw.MapNetworkDrive "x:",s1
+    nw.MapNetworkDrive "y:","\\servername\uni_drive"  
+   end if 
+  end if 
+ end if
 end if
-end if
+
+'=======batfileの作成========
+c:\windows\SysWOW64\wscript.exe c:\setting\network_drive_show.vbs
+
+'=======非表示にする場合========
+Dim oShell
+Set oShell = WScript.CreateObject ("WSCript.shell")
+oShell.run "C:\setting\network_drive_show.bat",0
+Set oShell = Nothing
